@@ -1,0 +1,64 @@
+syntax = "proto3";
+
+package user;
+option go_package = "github.com/your-org/project-protos/proto/user";
+
+// Сущность пользователь (минимум полей)
+message User {
+  uint32 id    = 1;
+  string email = 2;
+}
+
+// --- Запросы / Ответы ---
+
+// Создание пользователя
+message CreateUserRequest {
+  string email = 1;
+}
+message CreateUserResponse {
+  User user = 1;
+}
+
+// Получение пользователя по ID
+message GetUserRequest {
+  uint32 id = 1;
+}
+message GetUserResponse {
+  User user = 1;
+}
+
+// Обновление пользователя
+message UpdateUserRequest {
+  uint32 id    = 1;
+  string email = 2; // можно сделать optional, если будешь добавлять больше полей
+}
+message UpdateUserResponse {
+  User user = 1;
+}
+
+// Удаление пользователя
+message DeleteUserRequest {
+  uint32 id = 1;
+}
+message DeleteUserResponse {
+  bool success = 1;
+}
+
+// Список пользователей
+message ListUsersRequest {
+  uint32 limit  = 1;
+  uint32 offset = 2;
+}
+message ListUsersResponse {
+  repeated User users = 1;
+  uint32 total = 2;
+}
+
+// --- Сервис ---
+service UserService {
+  rpc CreateUser (CreateUserRequest) returns (CreateUserResponse);
+  rpc GetUser    (GetUserRequest)    returns (GetUserResponse);
+  rpc UpdateUser (UpdateUserRequest) returns (UpdateUserResponse);
+  rpc DeleteUser (DeleteUserRequest) returns (DeleteUserResponse);
+  rpc ListUsers  (ListUsersRequest)  returns (ListUsersResponse);
+}

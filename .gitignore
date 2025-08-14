@@ -1,0 +1,12 @@
+# Go
+bin/
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.test
+*.out
+
+# Generated protobuf files
+*.pb.go
