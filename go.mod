@@ -1,3 +1,3 @@
-module github.com/your-org/project-prot
+module github.com/stepanchaban/project-prot
 
 go 1.24.3
