@@ -8,5 +8,3 @@ bin/
 *.test
 *.out
 
-# Generated protobuf files
-*.pb.go
