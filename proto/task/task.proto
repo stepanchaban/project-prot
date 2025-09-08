@@ -54,11 +54,15 @@ message DeleteTaskRequest {
     string user_id = 2;
 }
 
+message DeleteTaskResponse {
+    bool success = 1;
+}
+
 service TaskService {
     rpc CreateTask (CreateTaskRequest) returns (CreateTaskResponse);
     rpc GetTask (GetTaskRequest) returns (GetTaskResponse);
     rpc ListTasks (ListTasksRequest) returns (ListTasksResponse);
     rpc ListTasksByUser (ListTasksByUserRequest) returns (ListTasksByUserResponse);
     rpc UpdateTask (UpdateTaskRequest) returns (UpdateTaskResponse);
-    rpc DeleteTask (DeleteTaskRequest) returns (google.protobuf.Empty);
+    rpc DeleteTask (DeleteTaskRequest) returns (DeleteTaskResponse);
 }
