@@ -2,8 +2,6 @@ syntax = "proto3";
 package task;
 option go_package = "github.com/stepanchaban/project-prot/proto/task";
 
-import "google/protobuf/empty.proto";
-
 message Task {
     string id = 1;
     string title = 2;
