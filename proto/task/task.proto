@@ -1,43 +1,41 @@
 syntax = "proto3";
 package task;
-option go_package = "github.com/stepanchaban/project-prot/proto/task";
+option go_package = "github.com/stepanchaban/project-prot/proto/task;task";
 
 message Task {
-  uint32 id = 1;
-  uint32 user_id = 2;
-  string title = 3;
+    string id = 1;
+    string user_id = 2;
+    string title = 3;
 }
 
 message CreateTaskRequest {
-  string title = 1;
-  uint32 user_id = 2;
+    string title = 1;
+    string user_id = 2;
 }
 
 message CreateTaskResponse {
-  Task task = 1;
+    Task task = 1;
 }
 
 message GetTaskRequest {
-  uint32 id = 1;
+    string id = 1;
 }
 
 message GetTaskResponse {
-  Task task = 1;
+    Task task = 1;
 }
 
-// Запрос на изменение
 message UpdateTaskRequest {
-  uint32 id = 1;
-  string new_title = 2;
+    string id = 1;
+    string new_title = 2;
 }
 
 message UpdateTaskResponse {
-  Task task = 1;
+    Task task = 1;
 }
 
-// Запрос на удаление
 message DeleteTaskRequest {
-  uint32 id = 1;
+    string id = 1;
 }
 
 message DeleteTaskResponse {
@@ -47,18 +45,18 @@ message DeleteTaskResponse {
 message ListTasksRequest {}
 
 message ListTasksByUserRequest {
-  uint32 user_id = 1;
+    string user_id = 1;
 }
 
 message ListTasksResponse {
-  repeated Task tasks = 1;
+    repeated Task tasks = 1;
 }
 
 service TaskService {
-  rpc CreateTask (CreateTaskRequest) returns (CreateTaskResponse);
-  rpc GetTask (GetTaskRequest) returns (GetTaskResponse);
-  rpc UpdateTask (UpdateTaskRequest) returns (UpdateTaskResponse);
-  rpc DeleteTask (DeleteTaskRequest) returns (DeleteTaskResponse);
-  rpc ListTasks (ListTasksRequest) returns (ListTasksResponse);
-  rpc ListTasksByUser(ListTasksByUserRequest) returns (ListTasksResponse);
+    rpc CreateTask (CreateTaskRequest) returns (CreateTaskResponse);
+    rpc GetTask (GetTaskRequest) returns (GetTaskResponse);
+    rpc UpdateTask (UpdateTaskRequest) returns (UpdateTaskResponse);
+    rpc DeleteTask (DeleteTaskRequest) returns (DeleteTaskResponse);
+    rpc ListTasks (ListTasksRequest) returns (ListTasksResponse);
+    rpc ListTasksByUser(ListTasksByUserRequest) returns (ListTasksResponse);
 }

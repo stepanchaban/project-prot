@@ -23,8 +23,8 @@ const (
 
 type Task struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            uint32                 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
-	UserId        uint32                 `protobuf:"varint,2,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	UserId        string                 `protobuf:"bytes,2,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
 	Title         string                 `protobuf:"bytes,3,opt,name=title,proto3" json:"title,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -60,18 +60,18 @@ func (*Task) Descriptor() ([]byte, []int) {
 	return file_proto_task_task_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *Task) GetId() uint32 {
+func (x *Task) GetId() string {
 	if x != nil {
 		return x.Id
 	}
-	return 0
+	return ""
 }
 
-func (x *Task) GetUserId() uint32 {
+func (x *Task) GetUserId() string {
 	if x != nil {
 		return x.UserId
 	}
-	return 0
+	return ""
 }
 
 func (x *Task) GetTitle() string {
@@ -84,7 +84,7 @@ func (x *Task) GetTitle() string {
 type CreateTaskRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Title         string                 `protobuf:"bytes,1,opt,name=title,proto3" json:"title,omitempty"`
-	UserId        uint32                 `protobuf:"varint,2,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	UserId        string                 `protobuf:"bytes,2,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -126,11 +126,11 @@ func (x *CreateTaskRequest) GetTitle() string {
 	return ""
 }
 
-func (x *CreateTaskRequest) GetUserId() uint32 {
+func (x *CreateTaskRequest) GetUserId() string {
 	if x != nil {
 		return x.UserId
 	}
-	return 0
+	return ""
 }
 
 type CreateTaskResponse struct {
@@ -179,7 +179,7 @@ func (x *CreateTaskResponse) GetTask() *Task {
 
 type GetTaskRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            uint32                 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -214,11 +214,11 @@ func (*GetTaskRequest) Descriptor() ([]byte, []int) {
 	return file_proto_task_task_proto_rawDescGZIP(), []int{3}
 }
 
-func (x *GetTaskRequest) GetId() uint32 {
+func (x *GetTaskRequest) GetId() string {
 	if x != nil {
 		return x.Id
 	}
-	return 0
+	return ""
 }
 
 type GetTaskResponse struct {
@@ -265,10 +265,9 @@ func (x *GetTaskResponse) GetTask() *Task {
 	return nil
 }
 
-// Запрос на изменение
 type UpdateTaskRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            uint32                 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	NewTitle      string                 `protobuf:"bytes,2,opt,name=new_title,json=newTitle,proto3" json:"new_title,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -304,11 +303,11 @@ func (*UpdateTaskRequest) Descriptor() ([]byte, []int) {
 	return file_proto_task_task_proto_rawDescGZIP(), []int{5}
 }
 
-func (x *UpdateTaskRequest) GetId() uint32 {
+func (x *UpdateTaskRequest) GetId() string {
 	if x != nil {
 		return x.Id
 	}
-	return 0
+	return ""
 }
 
 func (x *UpdateTaskRequest) GetNewTitle() string {
@@ -362,10 +361,9 @@ func (x *UpdateTaskResponse) GetTask() *Task {
 	return nil
 }
 
-// Запрос на удаление
 type DeleteTaskRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            uint32                 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -400,11 +398,11 @@ func (*DeleteTaskRequest) Descriptor() ([]byte, []int) {
 	return file_proto_task_task_proto_rawDescGZIP(), []int{7}
 }
 
-func (x *DeleteTaskRequest) GetId() uint32 {
+func (x *DeleteTaskRequest) GetId() string {
 	if x != nil {
 		return x.Id
 	}
-	return 0
+	return ""
 }
 
 type DeleteTaskResponse struct {
@@ -489,7 +487,7 @@ func (*ListTasksRequest) Descriptor() ([]byte, []int) {
 
 type ListTasksByUserRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	UserId        uint32                 `protobuf:"varint,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -524,11 +522,11 @@ func (*ListTasksByUserRequest) Descriptor() ([]byte, []int) {
 	return file_proto_task_task_proto_rawDescGZIP(), []int{10}
 }
 
-func (x *ListTasksByUserRequest) GetUserId() uint32 {
+func (x *ListTasksByUserRequest) GetUserId() string {
 	if x != nil {
 		return x.UserId
 	}
-	return 0
+	return ""
 }
 
 type ListTasksResponse struct {
@@ -581,33 +579,33 @@ const file_proto_task_task_proto_rawDesc = "" +
 	"\n" +
 	"\x15proto/task/task.proto\x12\x04task\"E\n" +
 	"\x04Task\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\rR\x02id\x12\x17\n" +
-	"\auser_id\x18\x02 \x01(\rR\x06userId\x12\x14\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\x12\x17\n" +
+	"\auser_id\x18\x02 \x01(\tR\x06userId\x12\x14\n" +
 	"\x05title\x18\x03 \x01(\tR\x05title\"B\n" +
 	"\x11CreateTaskRequest\x12\x14\n" +
 	"\x05title\x18\x01 \x01(\tR\x05title\x12\x17\n" +
-	"\auser_id\x18\x02 \x01(\rR\x06userId\"4\n" +
+	"\auser_id\x18\x02 \x01(\tR\x06userId\"4\n" +
 	"\x12CreateTaskResponse\x12\x1e\n" +
 	"\x04task\x18\x01 \x01(\v2\n" +
 	".task.TaskR\x04task\" \n" +
 	"\x0eGetTaskRequest\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\rR\x02id\"1\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\"1\n" +
 	"\x0fGetTaskResponse\x12\x1e\n" +
 	"\x04task\x18\x01 \x01(\v2\n" +
 	".task.TaskR\x04task\"@\n" +
 	"\x11UpdateTaskRequest\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\rR\x02id\x12\x1b\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\x12\x1b\n" +
 	"\tnew_title\x18\x02 \x01(\tR\bnewTitle\"4\n" +
 	"\x12UpdateTaskResponse\x12\x1e\n" +
 	"\x04task\x18\x01 \x01(\v2\n" +
 	".task.TaskR\x04task\"#\n" +
 	"\x11DeleteTaskRequest\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\rR\x02id\".\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\".\n" +
 	"\x12DeleteTaskResponse\x12\x18\n" +
 	"\asuccess\x18\x01 \x01(\bR\asuccess\"\x12\n" +
 	"\x10ListTasksRequest\"1\n" +
 	"\x16ListTasksByUserRequest\x12\x17\n" +
-	"\auser_id\x18\x01 \x01(\rR\x06userId\"5\n" +
+	"\auser_id\x18\x01 \x01(\tR\x06userId\"5\n" +
 	"\x11ListTasksResponse\x12 \n" +
 	"\x05tasks\x18\x01 \x03(\v2\n" +
 	".task.TaskR\x05tasks2\x90\x03\n" +
@@ -620,7 +618,7 @@ const file_proto_task_task_proto_rawDesc = "" +
 	"\n" +
 	"DeleteTask\x12\x17.task.DeleteTaskRequest\x1a\x18.task.DeleteTaskResponse\x12<\n" +
 	"\tListTasks\x12\x16.task.ListTasksRequest\x1a\x17.task.ListTasksResponse\x12H\n" +
-	"\x0fListTasksByUser\x12\x1c.task.ListTasksByUserRequest\x1a\x17.task.ListTasksResponseB0Z.github.com/Kilril312/project-protos/proto/taskb\x06proto3"
+	"\x0fListTasksByUser\x12\x1c.task.ListTasksByUserRequest\x1a\x17.task.ListTasksResponseB6Z4github.com/stepanchaban/project-prot/proto/task;taskb\x06proto3"
 
 var (
 	file_proto_task_task_proto_rawDescOnce sync.Once
