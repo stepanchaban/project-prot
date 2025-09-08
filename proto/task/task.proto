@@ -1,64 +1,64 @@
 syntax = "proto3";
-
 package task;
-option go_package = "github.com/stepanchaban/project-prot/proto/task;task";
+option go_package = "github.com/Kilril312/project-protos/proto/task";
 
-// --- Сущность ---
 message Task {
-  uint32 id    = 1;
-  string title = 2;
+  uint32 id = 1;
+  uint32 user_id = 2;
+  string title = 3;
 }
 
-// --- Запросы / Ответы ---
-
-// Создание
 message CreateTaskRequest {
   string title = 1;
+  uint32 user_id = 2;
 }
+
 message CreateTaskResponse {
   Task task = 1;
 }
 
-// Получение
 message GetTaskRequest {
   uint32 id = 1;
 }
+
 message GetTaskResponse {
   Task task = 1;
 }
 
-// Обновление
+// Запрос на изменение
 message UpdateTaskRequest {
-  uint32 id    = 1;
-  string title = 2; // можно сделать optional при расширении
+  uint32 id = 1;
+  string new_title = 2;
 }
+
 message UpdateTaskResponse {
   Task task = 1;
 }
 
-// Удаление
+// Запрос на удаление
 message DeleteTaskRequest {
   uint32 id = 1;
 }
+
 message DeleteTaskResponse {
-  bool success = 1;
+    bool success = 1;
 }
 
-// Список
-message ListTasksRequest {
-  uint32 limit  = 1;
-  uint32 offset = 2;
+message ListTasksRequest {}
+
+message ListTasksByUserRequest {
+  uint32 user_id = 1;
 }
+
 message ListTasksResponse {
   repeated Task tasks = 1;
-  uint32 total = 2;
 }
 
-// --- Сервис ---
 service TaskService {
   rpc CreateTask (CreateTaskRequest) returns (CreateTaskResponse);
-  rpc GetTask    (GetTaskRequest)    returns (GetTaskResponse);
+  rpc GetTask (GetTaskRequest) returns (GetTaskResponse);
   rpc UpdateTask (UpdateTaskRequest) returns (UpdateTaskResponse);
   rpc DeleteTask (DeleteTaskRequest) returns (DeleteTaskResponse);
-  rpc ListTasks  (ListTasksRequest)  returns (ListTasksResponse);
+  rpc ListTasks (ListTasksRequest) returns (ListTasksResponse);
+  rpc ListTasksByUser(ListTasksByUserRequest) returns (ListTasksResponse);
 }
